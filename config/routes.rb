@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  # EXAMPLE HTML ROUTE
-  # get "/photos" => "photos#index"
-
-  # EXAMPLE JSON ROUTE WITH API NAMESPACE
-  # namespace :api do
-  #   get "/photos" => "photos#index"
-  # end
+  get "/", to: "pages#index"
+  get "/auth/google_oauth2/callback" => "sessions#create"
+  get "/logout" => "sessions#destroy"
 end

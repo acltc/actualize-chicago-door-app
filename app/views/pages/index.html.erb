@@ -1,0 +1,6 @@
+<% unless current_user %>
+  <h1> Login to continue:</h1>
+  <a href="<%= @google_login_url %>">Sign in with Google</a>
+<% else %>
+  <h1>Welcome!</h1>
+<% end %>
