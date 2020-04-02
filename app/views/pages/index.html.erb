@@ -3,4 +3,7 @@
   <a href="<%= @google_login_url %>">Sign in with Google</a>
 <% else %>
   <h1>Welcome!</h1>
+  <%= form_with url: "/door_connections" do |form| %>
+    <button type="submit">Open the door</button>
+  <% end %>
 <% end %>
