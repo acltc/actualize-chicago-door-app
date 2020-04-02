@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
     else
-      flash[:error] = "Invalid google account"
+      flash[:danger] = "Invalid google account"
     end
     redirect_to "/"
   end

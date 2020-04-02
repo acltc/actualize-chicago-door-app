@@ -1,9 +1,50 @@
-<% unless current_user %>
-  <h1> Login to continue:</h1>
-  <a href="<%= @google_login_url %>">Sign in with Google</a>
-<% else %>
-  <h1>Welcome!</h1>
-  <%= form_with url: "/door_connections" do |form| %>
-    <button type="submit">Open the door</button>
+<div class="text-center w-100">
+  <% unless current_user %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Login</h5>
+        <p class="card-text">Use the Google account you registered with Actualize to log into the system.</p>
+        <a class="btn btn-outline-primary" href="<%= @google_login_url %>" role="button" style="text-transform:none">
+          <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+          Sign in with Google
+        </a>
+      </div>
+    </div>
+  <% else %>
+    <%= form_with url: "/door_connections" do |form| %>
+      <div class="box square">
+        <button class="btn btn-outline-info rounded-circle content"type="submit">
+          <img class="w-50" src="actualize-logo-square.png" alt="Actualize Logo">
+          <h4 class="">OPEN</h4>
+        </button>
+      </div>
+      <div class=" mt-5 text-light">
+        <p>Press the button to open the outside door (closes in 30 seconds) and take the elevator to the 3rd floor (closes in 3 minutes).</p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<style>
+.box {
+    position: relative;
+    width: 60%;
+    margin-left: 20%;
+}
+.box:before {
+    content: "";
+    display: block;
+}
+.square {
+    padding-top: 60%;
+}
+.content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border-width: 3px
+}
+</style>
