@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    email = request_google_email
+    email = authenticated_google_email
     user = User.find_by(email: email.downcase)
     if user
       session[:user_id] = user.id
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def request_google_email
+  def authenticated_google_email
     if params[:state] == session[:state]
       response = GoogleOauth.authenticate(code: params[:code])
       email = response[:email]
