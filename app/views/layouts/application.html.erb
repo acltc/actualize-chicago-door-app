@@ -18,14 +18,19 @@
   </head>
 
   <body class="d-flex flex-column">
-    <!-- Image and text -->
-    <nav class="navbar navbar-dark sticky-top bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a class="navbar-brand" href="/">
         <img src="actualize-logo-square.png" width="30" height="30" class="d-inline-block align-top" alt="Actualize Logo">
         Actualize Door Access
       </a>
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/logout">Logout</a>
+      
+      <div class="navbar-nav justify-content-end w-100">
+        <% if logged_in_as_admin? %>
+          <a class="nav-item nav-link" href="/admin">Admin</a>
+        <% end %>
+        <% if current_user %>
+          <a class="nav-item nav-link" href="/logout">Logout</a>
+        <% end %>
       </div>
     </nav>
     <div class="container p-2" style="min-height:5em;">
