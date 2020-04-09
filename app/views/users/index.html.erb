@@ -1,27 +1,37 @@
-<table class="table table-hover table-dark">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">First name</th>
-      <th scope="col">Last name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Start date</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <th scope="row"><%= user.id %></th>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.start_date %></td>
-      <td>
-      <a class="btn btn-sm btn-secondary">Edit</a>
-      <a class="btn btn-sm btn-secondary">Delete</a>
-      </td>
-    </tr>
+<div style="height: 70vh; width: 100%; overflow: auto;">
+  <table class="table table-hover table-dark">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">first name</th>
+        <th scope="col">last name</th>
+        <th scope="col">email</th>
+        <th scope="col">start date</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <th scope="row"><%= user.id %></th>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.start_date %></td>
+        <td>
+        <a class="btn btn-sm btn-secondary">Edit</a>
+        <a class="btn btn-sm btn-secondary">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <% if @page == 0%>
+      <span class="text-muted">Previous page</span>
+    <% else %>
+      <a href="/users?page=<%= @page - 1 %>">Previous page</a>
     <% end %>
-  </tbody>
-</table>
+    <a href="/users?page=<%= @page + 1 %>">Next page</a>
+  </div>
+</div>
