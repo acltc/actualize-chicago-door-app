@@ -1,0 +1,18 @@
+
+<%= form_with url: "/users", method: "post", class: "w-100" do |form| %>
+  <h2>Enter users </h2>
+  <% if @errors && @errors.length > 0 %>
+    <div class="text-danger bg-light">
+      <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <label for="users-csv">User comma separated values (first name, last name, email, start date YYYY-MM-DD)</label>
+    <textarea name="user_data" class="form-control" id="users-csv" rows="20"><%= @user_data %></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+<% end %>
