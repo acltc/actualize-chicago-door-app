@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @query = params[:query]
     admin_role_id = Role.find_by(name: "admin").id
-    @users = User.where.not(role_id: admin_role_id)
+    @users = User
+      .where.not(role_id: admin_role_id)
+      .where("first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
     page_size = 10
     @page = params[:page].to_i
     @page_last = @users.count / page_size
