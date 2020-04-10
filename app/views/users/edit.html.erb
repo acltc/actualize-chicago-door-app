@@ -30,8 +30,7 @@
   <a class="btn btn-secondary" href="/users">Cancel</a>
 <% end %>
 
-<%= form_with method: "delete", url: "/users/#{@user.id}" do |form| %>
-  <div class="text-right">
-    <button class="btn btn-danger" type="submit">Delete user</button>
-  </div>
+<%= form_with method: "delete", url: "/users/#{@user.id}", class: "mt-5" do |form| %>
+  <h2>Destroy user</h2>
+  <button class="btn btn-danger" type="submit">Destroy</button>
 <% end %>
