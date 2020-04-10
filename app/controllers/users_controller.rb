@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user_data = params[:user_data]
+    @user_data = params[:user_data].strip
     @errors = User.create_all_from_csv(@user_data)
     if @errors.length == 0
       flash[:success] = "All users created successfully"
