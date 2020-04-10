@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     current_user && current_user.is_admin?
   end
 
+  def authenticate_user!
+    redirect_to "/" unless current_user
+  end
+
   def authenticate_admin!
     redirect_to "/" unless logged_in_as_admin?
   end

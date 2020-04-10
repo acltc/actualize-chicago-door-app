@@ -1,4 +1,5 @@
 class DoorConnectionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_times, only: [:create]
 
   def create
