@@ -17,11 +17,11 @@
     </style>
   </head>
 
-  <body class="d-flex flex-column">
+  <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a class="navbar-brand" href="/">
         <img src="/actualize-logo-square.png" width="30" height="30" class="d-inline-block align-top" alt="Actualize Logo">
-        Actualize Door Access
+        Actualize Access
       </a>
       
       <div class="navbar-nav justify-content-end w-100">
@@ -33,15 +33,15 @@
         <% end %>
       </div>
     </nav>
-    <div class="container p-2" style="min-height:5em;">
-      <% flash.each do |type, msg| %>
-        <div class="alert alert-<%= type %>" role="alert">
-          <%= msg %>
-        </div>
-      <% end %>
-    </div>
-    <div class="container flex-grow-1 d-flex align-items-center">
-        <%= yield %>
+    <div class="container">
+      <div class="p-2" style="min-height:5em;">
+        <% flash.each do |type, msg| %>
+          <div class="alert alert-<%= type %>" role="alert">
+            <%= msg %>
+          </div>
+        <% end %>
+      </div>
+      <%= yield %>
     </div>
   </body>
 </html>
