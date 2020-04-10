@@ -28,10 +28,15 @@
   </table>
   <div>
     <% if @page == 0%>
-      <span class="text-muted">Previous page</span>
+      <a class="btn btn-light disabled"> < </a>
     <% else %>
-      <a href="/users?page=<%= @page - 1 %>">Previous page</a>
+      <a class="btn btn-light" href="/users?page=<%= @page - 1 %>"> < </a>
     <% end %>
-    <a href="/users?page=<%= @page + 1 %>">Next page</a>
+    <% if @page < @page_last %>
+      <a class="btn btn-light" href="/users?page=<%= @page + 1 %>"> > </a>
+    <% else %>
+      <a class="btn btn-light disabled"> > </a>
+    <% end %>
+    <span><%= @page + 1 %> / <%= @page_last + 1 %></span>
   </div>
 </div>

@@ -2,11 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @page = params[:page].to_i
     admin_role_id = Role.find_by(name: "admin").id
-    @users = User
-      .where.not(role_id: admin_role_id)
-      .limit(10).offset(@page * 10)
+    @users = User.where.not(role_id: admin_role_id)
+    page_size = 10
+    @page = params[:page].to_i
+    @page_last = @users.count / page_size
+    @users = @users.limit(page_size).offset(@page * page_size)
     render "index.html.erb"
   end
 
