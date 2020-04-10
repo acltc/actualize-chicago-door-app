@@ -49,4 +49,11 @@ class UsersController < ApplicationController
       render "edit.html.erb"
     end
   end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    flash[:success] = "User destroyed successfully"
+    redirect_to "/users"
+  end
 end

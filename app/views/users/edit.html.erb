@@ -1,4 +1,4 @@
-<%= form_with url: "/users/#{@user.id}", method: "patch", class: "w-100" do |form| %>
+<%= form_with url: "/users/#{@user.id}", method: "patch" do |form| %>
   <h2>Edit user</h2>
   <% if @user.errors.any? %>
     <div class="text-danger bg-light">
@@ -28,4 +28,10 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <a class="btn btn-secondary" href="/users">Cancel</a>
+<% end %>
+
+<%= form_with method: "delete", url: "/users/#{@user.id}" do |form| %>
+  <div class="text-right">
+    <button class="btn btn-danger" type="submit">Delete user</button>
+  </div>
 <% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/users" => "users#create"
   get "/users/:id/edit" => "users#edit"
   patch "/users/:id" => "users#update"
+  delete "/users/:id" => "users#destroy"
 
   get "/auth/google_oauth2/callback" => "sessions#create"
   get "/logout" => "sessions#destroy"
