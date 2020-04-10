@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @users = User
       .where.not(role_id: admin_role_id)
       .where("first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+      .order(:id => :desc)
     page_size = 10
     @page = params[:page].to_i
     @page_last = @users.count / page_size
@@ -27,6 +28,25 @@ class UsersController < ApplicationController
       redirect_to "/users"
     else
       render "new.html.erb"
+    end
+  end
+
+  def edit
+    @user = User.find_by(id: params[:id])
+    render "edit.html.erb"
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.first_name = params[:first_name]
+    @user.last_name = params[:last_name]
+    @user.email = params[:email]
+    @user.start_date = params[:start_date]
+    if @user.save
+      flash[:success] = "User updated successfully"
+      redirect_to "/users"
+    else
+      render "edit.html.erb"
     end
   end
 end
