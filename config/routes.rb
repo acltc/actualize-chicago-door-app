@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback" => "sessions#create"
   get "/logout" => "sessions#destroy"
 
-  post "/door_connections" => "door_connections#create"
+  post "/entrance_requests" => "entrance_requests#create"
 end
