@@ -37,7 +37,7 @@
       <div class="p-2" style="min-height:5em;">
         <% flash.each do |type, msg| %>
           <div class="alert alert-<%= type %>" role="alert">
-            <%= msg %>
+            <%= msg.html_safe %>
           </div>
         <% end %>
       </div>

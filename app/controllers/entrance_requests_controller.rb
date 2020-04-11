@@ -35,7 +35,7 @@ class EntranceRequestsController < ApplicationController
 
   def check_times
     unless current_user.valid_time?
-      flash[:warning] = "Please come back during scheduled hours"
+      flash[:warning] = "Please come back during scheduled hours:<br/>#{current_user.formatted_time_slots}"
       redirect_to "/"
     end
   end

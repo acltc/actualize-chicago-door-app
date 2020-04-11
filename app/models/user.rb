@@ -20,6 +20,12 @@ class User < ApplicationRecord
     end
   end
 
+  def formatted_time_slots
+    time_slots
+      .map { |time_slot| "#{time_slot.weekday[0..2]} #{Time.new(2020, 1, 1, time_slot.start_hour, time_slot.start_min).strftime("%I:%M%P")} - #{Time.new(2020, 1, 1, time_slot.end_hour, time_slot.end_min).strftime("%I:%M%P")}" }
+      .join("<br/>")
+  end
+
   def is_admin?
     role.name == "admin"
   end
