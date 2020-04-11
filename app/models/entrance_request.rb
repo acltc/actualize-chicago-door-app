@@ -34,7 +34,7 @@ class EntranceRequest < ApplicationRecord
       puts "@" * 50
       entrance_request.update(close_door_status: "closed")
       # else
-      #   # LOG ERROR DOOR FAILED TO CLOSE
+      #   Rails.logger.error "Door failed to close"
       # end
     else
       entrance_request.update(close_door_status: "cancelled")
@@ -57,7 +57,7 @@ class EntranceRequest < ApplicationRecord
       puts "@" * 50
       entrance_request.update(close_elevator_status: "closed")
       # else
-      #   # LOG ERROR ELEVATOR FAILED TO CLOSE
+      #   Rails.logger.error "Elevator failed to close"
       # end
     else
       entrance_request.update(close_elevator_status: "cancelled")
