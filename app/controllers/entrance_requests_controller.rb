@@ -1,6 +1,21 @@
 class EntranceRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_admin!, only: [:index]
   before_action :check_times, only: [:create]
+
+  def index
+    @query = params[:query]
+    @entrance_requests = EntranceRequest
+      .includes(:user)
+      .references(:user)
+      .where("users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+      .order(:id => :desc)
+    page_size = 10
+    @page = params[:page].to_i
+    @page_last = @entrance_requests.count / page_size
+    @entrance_requests = @entrance_requests.limit(page_size).offset(@page * page_size)
+    render "index.html.erb"
+  end
 
   def create
     @entrance_request = EntranceRequest.new(

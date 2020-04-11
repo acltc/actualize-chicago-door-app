@@ -1,4 +1,6 @@
 class EntranceRequest < ApplicationRecord
+  belongs_to :user
+
   validates :close_door_status, :close_elevator_status, presence: true
 
   def open_door_and_elevator
