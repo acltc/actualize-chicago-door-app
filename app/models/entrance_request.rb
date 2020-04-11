@@ -11,8 +11,8 @@ class EntranceRequest < ApplicationRecord
     # response = http.request(request)
     # xml_doc = Nokogiri::XML(response.body)
     # if xml_doc.xpath("//relay1state").text == "1" && xml_doc.xpath("//relay2state").text == "1"
-    self.close_door_status = CloseDoorJob.set(wait: 5.seconds).perform_later.job_id
-    self.close_elevator_status = CloseElevatorJob.set(wait: 15.seconds).perform_later.job_id
+    self.close_door_status = CloseDoorJob.set(wait: 30.seconds).perform_later.job_id
+    self.close_elevator_status = CloseElevatorJob.set(wait: 210.seconds).perform_later.job_id
     # else
     #   # LOG ERROR DOOR AND ELEVATOR FAILED TO OPEN
     # end
