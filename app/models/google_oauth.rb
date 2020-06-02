@@ -6,7 +6,7 @@ class GoogleOauth
     "?client_id=#{Rails.application.credentials.google[:client_id]}" +
     "&response_type=code" +
     "&scope=openid%20email" +
-    "&redirect_uri=#{Rails.application.credentials.google[:redirect_uri]}" +
+    "&redirect_uri=#{options[:base_url]}#{Rails.application.credentials.google[:redirect_path]}" +
     "&state=#{options[:state]}"
   end
 
@@ -16,7 +16,7 @@ class GoogleOauth
       code: options[:code],
       client_id: Rails.application.credentials.google[:client_id],
       client_secret: Rails.application.credentials.google[:client_secret],
-      redirect_uri: Rails.application.credentials.google[:redirect_uri],
+      redirect_uri: "#{options[:base_url]}#{Rails.application.credentials.google[:redirect_path]}",
       grant_type: "authorization_code",
     })
     json_response = JSON.parse(response.body)
@@ -36,5 +36,10 @@ class GoogleOauth
     else
       ""
     end
+  end
+
+  def self.revoke_token(access_token)
+    uri = URI.parse("https://accounts.google.com/o/oauth2/revoke?token=#{access_token}")
+    response = Net::HTTP.get_response(uri)
   end
 end

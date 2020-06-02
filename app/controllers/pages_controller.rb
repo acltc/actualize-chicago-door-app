@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def index
     session[:state] = random_token
-    @google_login_url = GoogleOauth.login_url(state: session[:state])
+    @google_login_url = GoogleOauth.login_url(state: session[:state], base_url: request.base_url)
     render "index.html.erb"
   end
 
